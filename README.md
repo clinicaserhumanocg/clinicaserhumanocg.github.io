@@ -3,10 +3,10 @@
 App web instalável do Painel Financeiro da Ser Humano. Esta pasta guarda só a "casca" do app: ícone, tela de abertura e configuração. Os dados continuam vindo ao vivo do Apps Script, protegidos pela senha do painel.
 
 ## Publicar no GitHub Pages
-1. Em github.com, clique em **New repository**, dê o nome `painel-sh`, deixe **Public** e crie.
+1. Em github.com, clique em **New repository**, dê o nome `clinicaserhumanocg.github.io` (na organização clinicaserhumanocg), deixe **Public** e crie.
 2. Clique em **uploading an existing file**, arraste todo o conteúdo desta pasta (index.html, manifest.webmanifest, sw.js, README.md) e clique em **Commit changes**.
 3. Vá em **Settings › Pages**. Em *Branch*, escolha **main** e **/ (root)** e clique em **Save**.
-4. Em 1 ou 2 minutos o endereço aparece no topo da página: `https://SEU-USUARIO.github.io/painel-sh/`.
+4. Em 1 ou 2 minutos o endereço aparece no topo da página: `https://clinicaserhumanocg.github.io/`.
 
 ## Instalar no celular
 - **iPhone (Safari):** abra o endereço › botão Compartilhar › **Adicionar à Tela de Início** › Adicionar.
