@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Instalar o Painel SH · Ser Humano</title>
+<meta name="description" content="Instale o app do Painel Financeiro da Ser Humano no seu celular.">
+<meta name="theme-color" content="#F5F4F9">
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:title" content="Painel Financeiro · Ser Humano">
+<meta property="og:description" content="Toque para instalar o app do painel no seu celular.">
+<meta property="og:image" content="https://heitorvilla-jpg.github.io/painel-sh/icon-512.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" href="favicon-32.png">
+<style>
+  :root{--roxo:#3E3766;--lav:#796CAA;--txt:#4A4566;--rosa:#D64F92}
+  *{box-sizing:border-box}
+  html{background:#F3DCE8}
+  body{margin:0;min-height:100vh;font-family:Nunito,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;color:var(--roxo);
+    background:linear-gradient(180deg,#DCEAF0 0%,#EADFEC 60%,#F3DCE8 100%);display:flex;justify-content:center;padding:28px 16px 48px}
+  .wrap{width:100%;max-width:440px;display:flex;flex-direction:column;align-items:center;gap:22px;text-align:center}
+  .logo{width:210px;height:auto;margin-top:6px}
+  .icon{width:96px;height:96px;border-radius:22px;box-shadow:0 10px 28px rgba(62,55,102,.22)}
+  h1{margin:0;font-size:28px;line-height:1.15;font-weight:800}
+  .sub{margin:0;font-size:16px;line-height:1.5;color:var(--txt)}
+  .card{width:100%;background:#FDFCFE;border-radius:20px;padding:22px 20px;box-shadow:0 10px 30px rgba(62,55,102,.10);text-align:left}
+  .card h2{margin:0 0 14px;font-size:18px;font-weight:800}
+  ol{margin:0;padding:0;list-style:none;counter-reset:p;display:flex;flex-direction:column;gap:14px}
+  ol li{counter-increment:p;display:flex;gap:12px;align-items:flex-start;font-size:16px;line-height:1.45;color:var(--txt)}
+  ol li::before{content:counter(p);flex:none;width:28px;height:28px;border-radius:50%;background:var(--roxo);color:#fff;font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center}
+  b{color:var(--roxo)}
+  .ic{display:inline-flex;vertical-align:-5px;width:22px;height:22px;color:#0A84FF}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;width:100%;border:0;border-radius:40px;padding:16px 22px;font:800 17px/1 inherit;font-family:inherit;color:#fff;background:var(--rosa);text-decoration:none;cursor:pointer}
+  .btn.sec{background:transparent;color:var(--roxo);border:2px solid var(--roxo)}
+  .hide{display:none!important}
+  .alert{width:100%;background:#FFF4E5;border:1px solid #F5C58A;color:#7A4A00;border-radius:14px;padding:14px 16px;font-size:15px;line-height:1.45;text-align:left}
+  .qr{width:220px;height:220px;border-radius:12px;background:#fff;padding:8px}
+  .foot{font-size:13px;color:#6B6590;margin-top:6px}
+  .band{position:fixed;left:0;right:0;bottom:0;height:8px;display:flex}.band i{flex:1}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <img class="logo" src="logo.png" alt="Ser Humano Clínica da Aprendizagem">
+  <img class="icon" src="icon-192.png" alt="Ícone do app Painel SH">
+  <h1>Painel Financeiro<br>no seu celular</h1>
+  <p class="sub">Instale o app <b>Painel SH</b> para abrir o painel com um toque, em tela cheia, sempre com os dados atualizados.</p>
+
+  <!-- Aberto dentro do WhatsApp/Instagram: precisa abrir no navegador -->
+  <div class="alert hide" id="inapp"><b>Abra esta página no navegador.</b><br>
+    <span id="inappIos">Toque nos <b>três pontinhos</b> ou no ícone de compartilhar e escolha <b>Abrir no Safari</b>.</span>
+    <span id="inappAnd">Toque nos <b>três pontinhos ⋮</b> e escolha <b>Abrir no Chrome</b>.</span>
+  </div>
+
+  <!-- iPhone / iPad -->
+  <div class="card hide" id="ios">
+    <h2>No iPhone (Safari)</h2>
+    <ol>
+      <li><span>Toque em <b>Compartilhar</b> <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 8 5-5 5 5"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg></span> na barra do Safari.</span></li>
+      <li><span>Role a lista e toque em <b>Adicionar à Tela de Início</b>.</span></li>
+      <li><span>Toque em <b>Adicionar</b>. O ícone <b>Painel SH</b> aparece na tela do celular.</span></li>
+    </ol>
+  </div>
+
+  <!-- Android -->
+  <div class="card hide" id="and">
+    <h2>No Android (Chrome)</h2>
+    <button class="btn hide" id="installBtn" type="button">Instalar o app</button>
+    <ol id="andSteps">
+      <li><span>Toque nos <b>três pontinhos ⋮</b> no canto de cima do Chrome.</span></li>
+      <li><span>Toque em <b>Instalar app</b> (ou <b>Adicionar à tela inicial</b>).</span></li>
+      <li><span>Confirme em <b>Instalar</b>. O ícone <b>Painel SH</b> aparece na tela do celular.</span></li>
+    </ol>
+  </div>
+
+  <!-- Computador -->
+  <div class="card hide" id="desk" style="text-align:center">
+    <h2>Aponte a câmera do celular</h2>
+    <img class="qr" src="qr.png" alt="QR code para abrir esta página no celular">
+    <p class="sub" style="margin-top:10px">Ou envie este link para o seu celular:<br><b>heitorvilla-jpg.github.io/painel-sh/instalar.html</b></p>
+  </div>
+
+  <div class="alert hide" id="done" style="background:#EEF8E6;border-color:#B9DC8F;color:#2F5A0C"><b>Pronto!</b> O app foi instalado. Procure o ícone <b>Painel SH</b> na tela do celular.</div>
+
+  <a class="btn sec" href="./">Abrir o painel sem instalar</a>
+  <p class="foot">A senha de acesso é a mesma enviada pela diretoria financeira.</p>
+</div>
+<div class="band" aria-hidden="true"><i style="background:#F7860F"></i><i style="background:#ABC81A"></i><i style="background:#0098DB"></i><i style="background:#E0609F"></i><i style="background:#796CAA"></i></div>
+<script>
+  var ua = navigator.userAgent || '';
+  var standalone = (window.matchMedia && matchMedia('(display-mode: standalone)').matches) || navigator.standalone;
+  if (standalone) location.replace('./');
+  var ios = /iPhone|iPad|iPod/i.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  var android = /Android/i.test(ua);
+  var inApp = /FBAN|FBAV|Instagram|WhatsApp|Line\/|; wv\)|GSA\//i.test(ua) || (ios && !/Safari/i.test(ua));
+  function show(id){ document.getElementById(id).classList.remove('hide'); }
+  if (ios) { show('ios'); }
+  else if (android) { show('and'); }
+  else { show('desk'); }
+  if (inApp && (ios || android)) { show('inapp'); document.getElementById(ios ? 'inappAnd' : 'inappIos').classList.add('hide'); }
+
+  var deferred = null, btn = document.getElementById('installBtn');
+  window.addEventListener('beforeinstallprompt', function(e){
+    e.preventDefault(); deferred = e;
+    btn.classList.remove('hide'); document.getElementById('andSteps').classList.add('hide');
+  });
+  btn.addEventListener('click', function(){
+    if (!deferred) return;
+    deferred.prompt();
+    deferred.userChoice.finally(function(){ deferred = null; });
+  });
+  window.addEventListener('appinstalled', function(){ show('done'); btn.classList.add('hide'); });
+  if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(function(){});
+</script>
+</body>
+</html>
