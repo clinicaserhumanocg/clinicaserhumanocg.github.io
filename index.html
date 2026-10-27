@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Painel SH · Ser Humano</title>
+<meta name="description" content="Painel financeiro da Ser Humano Clínica da Aprendizagem">
+<meta name="theme-color" content="#F5F4F9">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Painel SH">
+<meta name="robots" content="noindex, nofollow">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" href="favicon-32.png">
+<style>
+  :root{--roxo:#3E3766;--lav:#796CAA;--bg:#F5F4F9;--txt:#4A4566}
+  html,body{margin:0;height:100%;background:var(--bg);overflow:hidden;font-family:Nunito,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;-webkit-tap-highlight-color:transparent}
+  #app{position:fixed;inset:0;padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);box-sizing:border-box}
+  #app iframe{display:block;width:100%;height:100%;border:0;background:var(--bg)}
+  #splash{position:fixed;inset:0;z-index:5;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;padding:24px;box-sizing:border-box;
+    background:linear-gradient(180deg,#DCEAF0 0%,#EADFEC 60%,#F3DCE8 100%);transition:opacity .45s ease}
+  #splash.hide{opacity:0;pointer-events:none}
+  #splash img{width:min(240px,62vw);height:auto}
+  .dots{display:flex;gap:10px}
+  .dots i{width:12px;height:12px;border-radius:50%;animation:b 1.1s infinite ease-in-out}
+  .dots i:nth-child(1){background:#F7860F}.dots i:nth-child(2){background:#ABC81A;animation-delay:.12s}
+  .dots i:nth-child(3){background:#0098DB;animation-delay:.24s}.dots i:nth-child(4){background:#E0609F;animation-delay:.36s}
+  .dots i:nth-child(5){background:var(--lav);animation-delay:.48s}
+  @keyframes b{0%,80%,100%{transform:scale(.55);opacity:.5}40%{transform:scale(1);opacity:1}}
+  #msg{color:var(--txt);font-size:15px;text-align:center;max-width:320px;line-height:1.45;min-height:22px}
+  .btn{display:none;appearance:none;border:0;border-radius:40px;padding:12px 26px;font:700 15px/1 inherit;font-family:inherit;color:#fff;background:#D64F92;text-decoration:none}
+  .btn.show{display:inline-block}
+  .band{position:absolute;left:0;right:0;bottom:0;height:8px;display:flex}
+  .band i{flex:1}
+</style>
+</head>
+<body>
+<div id="splash" role="status" aria-live="polite">
+  <img src="logo.png" alt="Ser Humano Clínica da Aprendizagem">
+  <div class="dots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+  <p id="msg">Carregando o painel financeiro…</p>
+  <button class="btn" id="retry" type="button">Tentar de novo</button>
+  <a class="btn" id="open" target="_blank" rel="noopener">Abrir no navegador</a>
+  <div class="band" aria-hidden="true"><i style="background:#F7860F"></i><i style="background:#ABC81A"></i><i style="background:#0098DB"></i><i style="background:#E0609F"></i><i style="background:#796CAA"></i></div>
+</div>
+<div id="app"></div>
+<script>
+  // Endereço do painel publicado no Apps Script (App da Web). Ao criar uma nova implantação, troque aqui.
+  var PAINEL_URL = 'https://script.google.com/macros/s/AKfycbxiRGSmYg3YA16fWo4aPnilOy1ziH4dZxA5sNh9rHg2zQ9GJwUnTCbPZ9IuJHy9GNYgzg/exec';
+
+  var splash = document.getElementById('splash'), msg = document.getElementById('msg');
+  var retry = document.getElementById('retry'), open = document.getElementById('open');
+  var app = document.getElementById('app'), slowT = null;
+  open.href = PAINEL_URL;
+
+  function mostrarErro(texto){
+    splash.classList.remove('hide'); msg.textContent = texto;
+    retry.classList.add('show'); open.classList.add('show');
+  }
+  function carregar(){
+    retry.classList.remove('show'); open.classList.remove('show');
+    msg.textContent = 'Carregando o painel financeiro…';
+    if (!navigator.onLine) { mostrarErro('Sem internet. O painel precisa de conexão para buscar os dados da planilha.'); return; }
+    app.innerHTML = '';
+    var f = document.createElement('iframe');
+    f.title = 'Painel financeiro Ser Humano';
+    f.setAttribute('allow', 'clipboard-write');
+    f.addEventListener('load', function(){
+      clearTimeout(slowT);
+      setTimeout(function(){ splash.classList.add('hide'); }, 600);
+    });
+    f.src = PAINEL_URL;
+    app.appendChild(f);
+    clearTimeout(slowT);
+    slowT = setTimeout(function(){
+      if (!splash.classList.contains('hide')) mostrarErro('Está demorando mais que o normal. Verifique a conexão ou abra no navegador.');
+    }, 25000);
+  }
+  retry.addEventListener('click', carregar);
+  window.addEventListener('online', function(){ if (!splash.classList.contains('hide')) carregar(); });
+  carregar();
+
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function(){ navigator.serviceWorker.register('sw.js').catch(function(){}); });
+  }
+</script>
+</body>
+</html>
